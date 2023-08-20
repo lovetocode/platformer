@@ -2,7 +2,7 @@ extends Actor
 
 func _physics_process(delta):
 	var direction = get_direction()
-	velocity1 = speed * direction
+	velocity1 = calculate_move_velocity(velocity,direction,speed,delta)
 	set_velocity(velocity1)
 	move_and_slide()
 	
@@ -21,5 +21,5 @@ func calculate_move_velocity(linear_velocity,
 	velocity.y += gravity * delta
 	if direction.y == -1.0:
 		velocity.y = speed.y * direction.y
-	return speed * direction
+	return Vector2(new_velocity, velocity.y)
 
